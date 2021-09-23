@@ -23,7 +23,6 @@ func Send(payload Payload, token string)  error {
 	}
 	body := bytes.NewReader(payloadBytes)
 	url := "https://gitlab.com/api/v4/projects?private_token=" + token
-	println(url)
 	req, err := http.NewRequest("POST", url, body)
 	if err != nil {
 		return err
@@ -31,7 +30,6 @@ func Send(payload Payload, token string)  error {
 	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := http.DefaultClient.Do(req)
-	println(resp)
 	if err != nil {
 		return err
 	}
