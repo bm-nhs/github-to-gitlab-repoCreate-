@@ -1,0 +1,5 @@
+export githubPAT = ghp-github access token
+githubTarget = github target org
+gitlabTarget = gitlab target org
+gitlabNamespace = my-awesome-test1  ///TODOFIX
+gitlabToken = gitlab token
