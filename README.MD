@@ -1,5 +1,16 @@
-github-to-gitlab-repoCreate
- https://www.digitalocean.com/community/tutorials/how-to-build-and-install-go-programs
+# github-to-gitlab-repoCreate
+#[How to build and install Golang](https://www.digitalocean.com/community/tutorials/how-to-build-and-install-go-programs)
+## Setting up .env
+ Please see .envExample as a guide to create .env
+ ```
+ export githubPAT = ghp-github access token
+ githubTarget = github target org
+ gitlabTarget = gitlab target org
+ gitlabNamespace = my-awesome-test1  ///TODOFIX
+ gitlabToken = gitlab token
+ ```
+
+
 ## Query GitHub API for all repositories within an organization:
 ```bigquery
 curl "https://api.github.com/users/$GHUSER/repos?access_token=$GITHUB_API_TOKEN" | grep -w clone_url
@@ -17,15 +28,3 @@ ID    = gitLab group namespace_id
 ```
 curl --header "PRIVATE-TOKEN: <token>" "https://gitlab.com/api/v4/namespaces"    
 ```
-
-
-##### setting up .env vars for testing
-``` # github personal access token set to read private repositories and write
-githubPAT = <ghp>
-targetOrg = <Org Name Example: nhsllc>
-```
-### Enviroment Vars
-# export githubPAT = gitHub-auth-token
-# targetOrg = org-alias
-# payload = ./path/to/payload
-# branchName = name-of-new-branch
