@@ -28,7 +28,7 @@ func main() {
 	// Create a GitLab Repo
 	for i := 0; i < len(repos); i++ {
 		repo := *repos[i].Name
-		payload := gitlab.Payload{
+		payload := gitlab.CreateRepoPayload{
 			NamespaceID: gitlabNamespaceID,
 			Name:        repo,
 		}
