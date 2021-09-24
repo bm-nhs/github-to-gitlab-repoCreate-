@@ -16,12 +16,12 @@ func main() {
 	gitlabNamespaceID := string(os.Getenv("gitlabNamespaceID"))
 	gitlabToken := string(os.Getenv("gitlabToken"))
 	ctx := context.Background()
-	ts := oauth2.StaticTokenSource(
+	StaticTokenSource := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: githubtoken},
 	)
 
-	tc := oauth2.NewClient(ctx, ts)
-	client := github.NewClient(tc)
+	newClient := oauth2.NewClient(ctx, StaticTokenSource)
+	client := github.NewClient(newClient)
 	repos, _, _ := client.Repositories.ListByOrg(ctx, githubTarget, nil)
 
 	// For each GitHub Repo Within the target Org
