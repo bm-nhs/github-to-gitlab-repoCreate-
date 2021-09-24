@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
-	"os"
 	"github-to-gitlab-repoCreate/gitlab"
 	"github.com/google/go-github/v38/github"
 	"github.com/joho/godotenv"
 	"golang.org/x/oauth2"
+	"os"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 		repo := *repos[i].Name
 		payload := gitlab.Payload{
 			NamespaceID: gitlabNamespaceID,
-			Name: repo,
+			Name:        repo,
 		}
 
 		err := gitlab.Send(payload, gitlabToken)
