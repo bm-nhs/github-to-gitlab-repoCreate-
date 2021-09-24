@@ -3,11 +3,11 @@
 ## Setting up .env
  Please see .envExample as a guide to create .env
  ```
- export githubPAT = ghp-github access token
- githubTarget = github target org
- gitlabTarget = gitlab target org
- gitlabNamespace = my-awesome-test1  ///TODOFIX
- gitlabToken = gitlab token
+export githubPAT = <github access token>
+githubTarget = <github org or user name>
+gitlabNamespaceID = <gitlab user or group ID>
+gitlabToken = <gitlab access token>
+
  ```
 
 
