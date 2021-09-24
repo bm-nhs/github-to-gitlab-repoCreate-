@@ -29,6 +29,7 @@ func main() {
 	repos, _, err := client.Repositories.ListByOrg(ctx, githubTarget, nil)
 	if err != nil {
 		println(err)
+		return
 	}
 	// For each GitHub Repo Within the target Org
 	// Create a GitLab Repo
