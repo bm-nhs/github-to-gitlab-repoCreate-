@@ -10,7 +10,11 @@ import (
 )
 
 func main() {
-	godotenv.Load(".env")
+	err := godotenv.Load(".env")
+	if err != nil {
+		println(err)
+		return
+	}
 	githubtoken := string(os.Getenv("githubPAT"))
 	githubTarget := string(os.Getenv("githubTarget"))
 	gitlabNamespaceID := string(os.Getenv("gitlabNamespaceID"))
@@ -22,8 +26,10 @@ func main() {
 
 	newClient := oauth2.NewClient(ctx, StaticTokenSource)
 	client := github.NewClient(newClient)
-	repos, _, _ := client.Repositories.ListByOrg(ctx, githubTarget, nil)
-
+	repos, _, err := client.Repositories.ListByOrg(ctx, githubTarget, nil)
+	if err != nil {
+		println(err)
+	}
 	// For each GitHub Repo Within the target Org
 	// Create a GitLab Repo
 	for i := 0; i < len(repos); i++ {
