@@ -1,5 +1,5 @@
 # github-to-gitlab-repoCreate
-#[How to build and install Golang](https://www.digitalocean.com/community/tutorials/how-to-build-and-install-go-programs)
+# [How to build and install Golang](https://www.digitalocean.com/community/tutorials/how-to-build-and-install-go-programs)
 ## Setting up .env
  Please see .envExample as a guide to create .env
  ```
