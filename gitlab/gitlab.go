@@ -15,8 +15,6 @@ type Payload struct {
 
 func Send(payload Payload, token string)  error {
 	data := payload
-	println(data.NamespaceID)
-	println(data.Name)
 	payloadBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
