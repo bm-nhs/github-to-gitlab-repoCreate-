@@ -1,4 +1,7 @@
 # github-to-gitlab-repoCreate
+This repo bulk initializes GitLab repos based on a GitHub
+organization or user's current repositories. This will only ever be executed once.
+
 # [How to build and install Golang](https://www.digitalocean.com/community/tutorials/how-to-build-and-install-go-programs)
 ## Setting up .env
  Please see .envExample as a guide to create .env
