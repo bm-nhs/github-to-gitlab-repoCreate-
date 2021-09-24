@@ -13,8 +13,8 @@ type Payload struct {
 	NamespaceID string `json:"namespace_id"`
 }
 
-// Send takes a Payload consisting of Name (name of new Repo) and NamespaceID (ID of target group or user)
-func Send(payload Payload, token string)  error {
+// CreateRepo takes a Payload consisting of Name (name of new Repo) and NamespaceID (ID of target group or user)
+func CreateRepo(payload Payload, token string)  error {
 	data := payload
 	payloadBytes, err := json.Marshal(data)
 	if err != nil {
