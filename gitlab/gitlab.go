@@ -8,13 +8,13 @@ import (
 
 // curl -H "Content-Type:application/json" https://gitlab.com/api/v4/projects?private_token=TOKEN -d "{ \"name\": \"newRepo\", \"namespace_id\": \"ID\" }"
 
-type Payload struct {
+type CreateRepoPayload struct {
 	Name        string `json:"name"`
 	NamespaceID string `json:"namespace_id"`
 }
 
 // CreateRepo takes a Payload consisting of Name (name of new Repo) and NamespaceID (ID of target group or user)
-func CreateRepo(payload Payload, token string)  error {
+func CreateRepo(payload CreateRepoPayload, token string)  error {
 	data := payload
 	payloadBytes, err := json.Marshal(data)
 	if err != nil {
