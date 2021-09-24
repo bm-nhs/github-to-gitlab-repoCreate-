@@ -33,7 +33,7 @@ func main() {
 			Name:        repo,
 		}
 
-		err := gitlab.Send(payload, gitlabToken)
+		err := gitlab.CreateRepo(payload, gitlabToken)
 		if err != nil {
 			println(err)
 		}
