@@ -3,6 +3,7 @@ package gitlab
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
@@ -15,13 +16,12 @@ type CreateRepoPayload struct {
 
 // CreateRepo takes a Payload consisting of Name (name of new Repo) and NamespaceID (ID of target group or user)
 func CreateRepo(payload CreateRepoPayload, token string)  error {
-	data := payload
-	payloadBytes, err := json.Marshal(data)
+	payloadBytes, err := json.Marshal(payload)
 	if err != nil {
 		return err
 	}
 	body := bytes.NewReader(payloadBytes)
-	url := "https://gitlab.com/api/v4/projects?private_token=" + token
+	url := fmt.Sprintf("https://gitlab.com/api/v4/projects?private_token=%s", token)
 	req, err := http.NewRequest("POST", url, body)
 	if err != nil {
 		return err
