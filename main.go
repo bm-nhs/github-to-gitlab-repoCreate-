@@ -26,19 +26,32 @@ func main() {
 
 	newClient := oauth2.NewClient(ctx, StaticTokenSource)
 	client := github.NewClient(newClient)
-	//TODO fix pagination manual process right now...
+
+	// Initialize options for pagination
 	var listOptions = github.ListOptions{
-		Page: 2,
+		Page: 1,
 		PerPage: 100,
 	}
 	repositoryListByOrgOptions := github.RepositoryListByOrgOptions{
 		Type: "all",
 		ListOptions: listOptions,
 	}
-	repositories, _, err := client.Repositories.ListByOrg(ctx, githubTarget, &repositoryListByOrgOptions)
+	// Make an initial request to get number of repositories
+	repositories, response, err := client.Repositories.ListByOrg(ctx, githubTarget, &repositoryListByOrgOptions)
 	if err != nil {
 		println(err)
 		return
+	}
+	//Paginate through repositories.
+	for i := 1; i < response.LastPage; i++ {
+		listOptions.Page = i
+		repositoryListByOrgOptions.ListOptions = listOptions
+		pagination, _, err := client.Repositories.ListByOrg(ctx, githubTarget, &repositoryListByOrgOptions)
+		if err != nil {
+			println(err)
+			return
+		}
+		repositories = append(repositories,pagination...)
 	}
 	// For each GitHub Repo Within the target Org
 	// Create a GitLab Repo
