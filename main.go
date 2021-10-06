@@ -15,6 +15,7 @@ func main() {
 		println(err)
 		return
 	}
+	// Init env vars
 	githubToken := string(os.Getenv("githubPAT"))
 	githubTarget := string(os.Getenv("githubTarget"))
 	gitlabNamespaceID := string(os.Getenv("gitlabNamespaceID"))
