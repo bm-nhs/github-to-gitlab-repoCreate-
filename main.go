@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"github-to-gitlab-repoCreate/gitlab"
-	"github.com/google/go-github/v38/github"
+	"github.com/google/go-github/github"
 	"github.com/joho/godotenv"
 	"golang.org/x/oauth2"
 	"os"
@@ -26,7 +26,16 @@ func main() {
 
 	newClient := oauth2.NewClient(ctx, StaticTokenSource)
 	client := github.NewClient(newClient)
-	repositories, _, err := client.Repositories.ListByOrg(ctx, githubTarget, nil)
+	//TODO fix pagination manual process right now...
+	var listOptions = github.ListOptions{
+		Page: 2,
+		PerPage: 100,
+	}
+	repositoryListByOrgOptions := github.RepositoryListByOrgOptions{
+		Type: "private",
+		ListOptions: listOptions,
+	}
+	repositories, _, err := client.Repositories.ListByOrg(ctx, githubTarget, &repositoryListByOrgOptions)
 	if err != nil {
 		println(err)
 		return
@@ -39,7 +48,7 @@ func main() {
 			NamespaceID: gitlabNamespaceID,
 			Name:        repo,
 		}
-
+		println(repo)
 		err := gitlab.CreateRepo(payload, gitlabToken)
 		if err != nil {
 			println(err)
