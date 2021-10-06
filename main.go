@@ -32,7 +32,7 @@ func main() {
 		PerPage: 100,
 	}
 	repositoryListByOrgOptions := github.RepositoryListByOrgOptions{
-		Type: "private",
+		Type: "all",
 		ListOptions: listOptions,
 	}
 	repositories, _, err := client.Repositories.ListByOrg(ctx, githubTarget, &repositoryListByOrgOptions)
